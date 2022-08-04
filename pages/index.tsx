@@ -1,7 +1,8 @@
-import { PokemonCard } from "../components/pokemonCard";
+import { InferGetServerSidePropsType } from "next";
+import { PokemonCard } from "../components/PokemonCard";
 import { ApiAllPokemonResponse, Pokemon } from "../types/types";
 
-export async function getServerSideProps(): Promise<{
+export async function getServerSideProps(context: any): Promise<{
   props: { pokemons: ApiAllPokemonResponse };
 }> {
   const res = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=10");
@@ -27,19 +28,25 @@ export async function getServerSideProps(): Promise<{
   };
 }
 
-const Home = ({ pokemons }: any) => {
+export default function Home({
+  pokemons,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
       <div className="flex justify-center flex-row">
         <h1 className="text-5xl font-bold mt-5 mb-4">Pokemon list</h1>
       </div>
       <div className="grid grid-cols-4 gap-4 m-3">
-        {pokemons.results.map((pokemon: Pokemon, index: number) => (
-          <PokemonCard key={index} name={pokemon.name} image={pokemon.image} />
-        ))}
+        {pokemons &&
+          pokemons.results.map((pokemon: Pokemon, index: number) => (
+            <PokemonCard
+              key={index}
+              name={pokemon.name}
+              image={pokemon.image}
+              url={pokemon.url}
+            />
+          ))}
       </div>
     </>
   );
-};
-
-export default Home;
+}
