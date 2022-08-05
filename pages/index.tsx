@@ -36,7 +36,7 @@ export default function Home({
       <div className="flex justify-center flex-row">
         <h1 className="text-5xl font-bold mt-5 mb-4">Pokemon list</h1>
       </div>
-      <div className="grid grid-cols-4 gap-4 m-3">
+      <div className="grid lg:grid-cols-4 gap-4 m-3 sm:justify-center">
         {pokemons &&
           pokemons.results.map((pokemon: Pokemon, index: number) => (
             <PokemonCard
