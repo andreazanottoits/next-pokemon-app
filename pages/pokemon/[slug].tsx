@@ -8,7 +8,6 @@ export async function getServerSideProps(context: any): Promise<{
   const { slug } = context.query;
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/` + slug);
   const pokemon: PokemonDetails = await res.json();
-  console.log(pokemon.sprites.other["official-artwork"]);
   return { props: { pokemon } };
 }
 
@@ -35,7 +34,9 @@ export default function PokemonDetail({
           <p className="text-2xl font-bold">Name: {pokemon.name}</p>
           <p className="text-2xl font-bold">Height: {pokemon.height}</p>
           <p className="text-2xl font-bold">Weight: {pokemon.weight}</p>
-          <p className="text-2xl font-bold">Types:</p>
+          <p className="text-2xl font-bold">
+            {pokemon.types.length > 1 ? "Types" : "Type"}
+          </p>
           <ul className="list-disc ml-8">
             {pokemon.types.map((type: PokemonType, index: number) => (
               <li key={index} className="text-2xl font-bold">
@@ -43,7 +44,9 @@ export default function PokemonDetail({
               </li>
             ))}
           </ul>
-          <p className="text-2xl font-bold">Abilities:</p>
+          <p className="text-2xl font-bold">
+            {pokemon.abilities.length > 1 ? "Abilities" : "Ability"}
+          </p>
           <ul className="list-disc ml-8">
             {pokemon.abilities.map((ability: Ability, index: number) => (
               <li key={index} className="text-2xl font-bold">
@@ -51,7 +54,7 @@ export default function PokemonDetail({
               </li>
             ))}
           </ul>
-          <p className="text-2xl font-bold">Stats:</p>
+          <p className="text-2xl font-bold">Base Stats:</p>
           <ul className="list-disc ml-8">
             {pokemon.stats.map((stat: Stat, index: number) => (
               <li key={index} className="text-2xl font-bold">
