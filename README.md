@@ -3,7 +3,7 @@ This project was developed following [this](https://www.youtube.com/watch?v=kdXK
 
 ## 🚩 Objective
 
-The objective of this project was trying out **SSR** (Server Side Rendering) page generation using Next.js framework.
+The objective of this project was trying out **SSR** (Server Side Rendering) page generation using Next.js framework and Tailwind for the UI.
 
 ## 🛠 Technologies used
 
@@ -11,8 +11,11 @@ The objective of this project was trying out **SSR** (Server Side Rendering) pag
 
 - Javascript/Typescript
 
-### Framework: 
+### Framework:
 - Next.js
+
+### UI
+- Tailwind
 
 ## ✔️ What does the application do?
 
